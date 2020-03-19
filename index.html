@@ -28,14 +28,74 @@
   
 <link rel="stylesheet" href="/css/style.css">
 
+  <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+ <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
+<!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<style type="text/css">
+  #header{
+    height: 100%;
+  }
+  #carousel-example-generic{
+    height: 100%;
+  }
+  .carousel-inner{
+    height: 100%;
+  }
+  .item{
+    height: 100%;
+    width: 100%;
+    position: relative;
+  }
+  .item .bg{
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    height: 100%;
+    width: 100%;
+    background-color:#F44336; 
+    opacity: 0.1;
+  }
+  .item img{
+    height: 100% !important;
+    width: 100%;
+  }
+  .btn{
+    display: inline-block;
+    padding: 0px 35px;
+    border: 1px solid #fff;
+    height: 43px;
+    line-height: 43px;
+    border-radius: 10px;
+    transition: 1s;
+    color: white;
+  }
+  .btn:hover{
+    border: 1px solid red;
+    background-color: red;
+    border: 0px;
+    color: #fff;
+
+    
+  }
+  .carousel-caption{
+    position: relative;
+    top: -60%;
+    left: 0%;
+  }
+</style>
 <meta name="generator" content="Hexo 4.2.0"></head>
 
 <body>
   <div id="container">
     <div id="wrap">
       <header id="header">
-  <div id="banner"></div>
+  <!-- <div id="banner"></div>
   <div id="header-outer" class="outer">
     <div id="header-title" class="inner">
       <h1 id="logo-wrap">
@@ -66,11 +126,135 @@
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
       </div>
     </div>
+  </div> -->
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">李平勇的博客</a>
+      </div>
+  
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav navbar-right" style="margin-right: 20px;">
+          <li><a href="#"> <i class="glyphicon glyphicon-home"></i> 首页</a></li>
+          <li><a href="#"> <i class="glyphicon glyphicon-tags"></i> 标签</a></li>
+          <li><a href="#"> <i class="glyphicon glyphicon-bookmark"></i> 分类</a></li>
+          <li><a href="#"> <i class="glyphicon glyphicon-folder-close"></i> 归档</a></li>
+          <li><a href="#"> <i class="glyphicon glyphicon-user"></i> 关于</a></li>
+          <li><a href="#"> <i class="glyphicon glyphicon-pencil"></i> 留言</a></li>
+          <li><a href="#"> <i class="glyphicon glyphicon-search"></i> </a></li>
+        </ul>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
+  <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+      <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+      <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+      <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+    </ol>
+   
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner" role="listbox">
+      <div class="item active">
+        <div class="bg"></div>
+        <img src="http://oss.mflyyou.cn/source/medias/banner/4.jpg" alt="...">
+        <div class="carousel-caption">
+          <h3><a href="/" id="logo">Here You</a></h3>
+          <h2 id="subtitle-wrap">
+            <a href="/" id="subtitle">今天你秃了嘛？</a>
+          </h2>
+          <p><span>白日放歌须纵酒，青春作伴好还乡。</span><span>【唐代】杜甫《闻官军收河南河北》</span></p>
+          <p>
+            <a class="btn" href=""> <i class="glyphicon glyphicon-info-sign"></i> 开始阅读</a>
+            <a class="btn" href=""> <i class="glyphicon glyphicon-tag"></i> GITHUB</a>
+          </p>
+        </div>
+      </div>
+      <div class="item">
+        <div class="bg"></div>
+        <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1584596154400&di=deeb5e420f9b4d31cee4534e6632dbd5&imgtype=0&src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2F2018-01-25%2F5a699c4a6ed20.jpg" alt="...">
+        <div class="carousel-caption">
+          <h3><a href="/" id="logo">Node缓存机制</a></h3>
+          <p>node缓存机制看这篇就够了</p>
+          <p>
+            <a class="btn" href=""> <i class="glyphicon glyphicon-info-sign"></i> 阅读更多</a>
+          </p>
+        </div>
+      </div>
+      <div class="item">
+        <div class="bg"></div>
+        <img src="http://hereyou.club/css/images/banner.jpg" alt="...">
+          <div class="carousel-caption">
+            <h3><a href="/" id="logo">VUE生命周期</a></h3>
+            <p>八个钩子，四个周期</p>
+            <p>
+              <a class="btn" href=""> <i class="glyphicon glyphicon-info-sign"></i> 阅读更多</a>
+            </p>
+          </div>
+      </div>
+    </div>
+    
+  
+    <!-- Controls -->
+    <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
   </div>
-
 </header>
       <div class="outer">
         <section id="main">
+  
+    <article id="post-vue/lifeCycle" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/18/vue/lifeCycle/" class="article-date">
+  <time datetime="2020-03-17T16:00:00.000Z" itemprop="datePublished">2020-03-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/18/vue/lifeCycle/">VUE的生命周期</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>每个 Vue 实例在被创建时都要经过一系列的初始化过程——例如，需要设置数据监听、编译模板、将实例挂载到 DOM 并在数据变化时更新 DOM 等。<br>同时在这个过程中也会运行一些叫做生命周期钩子的函数，这给了用户在不同阶段添加自己的代码的机会。</p>
+<h2 id="一、生命周期图示"><a href="#一、生命周期图示" class="headerlink" title="一、生命周期图示"></a>一、生命周期图示</h2><p>下图展示了实例的生命周期。你不需要立马弄明白所有的东西，不过随着你的不断学习和使用，它的参考价值会越来越高。</p>
+<p><img src="https://img-blog.csdnimg.cn/20190107221323124.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21xaW5nbw==,size_16,color_FFFFFF,t_70" alt="lifecycle"></p>
+<!-- More info: [Writing](https://hexo.io/docs/writing.html) -->
+
+<h2 id="二、Vue生命周期代码"><a href="#二、Vue生命周期代码" class="headerlink" title="二、Vue生命周期代码"></a>二、Vue生命周期代码</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang&#x3D;&quot;en&quot;&gt;</span><br><span class="line"> </span><br><span class="line">&lt;head&gt;</span><br><span class="line">  &lt;meta charset&#x3D;&quot;UTF-8&quot;&gt;</span><br><span class="line">  &lt;meta name&#x3D;&quot;viewport&quot; content&#x3D;&quot;width&#x3D;device-width, initial-scale&#x3D;1.0&quot;&gt;</span><br><span class="line">  &lt;meta http-equiv&#x3D;&quot;X-UA-Compatible&quot; content&#x3D;&quot;ie&#x3D;edge&quot;&gt;</span><br><span class="line">  &lt;title&gt;Document&lt;&#x2F;title&gt;</span><br><span class="line">  &lt;script type&#x3D;&quot;text&#x2F;javascript&quot; src&#x3D;&quot;..&#x2F;lib&#x2F;vue-2.4.0.js&quot; &gt;&lt;&#x2F;script&gt;</span><br><span class="line">  &lt;link rel&#x3D;&quot;stylesheet&quot; href&#x3D;&quot;..&#x2F;lib&#x2F;bootstrap-3.3.7.css&quot;&gt;&lt;&#x2F;link&gt;</span><br><span class="line">&lt;&#x2F;head&gt;</span><br><span class="line"> </span><br><span class="line">&lt;body&gt;</span><br><span class="line">  &lt;div id&#x3D;&quot;app&quot;&gt;</span><br><span class="line">    &lt;input type&#x3D;&quot;button&quot; value&#x3D;&quot;修改msg&quot; @click&#x3D;&quot;msg&#x3D;&#39;No&#39;&quot;&gt;</span><br><span class="line">    &lt;h3 id&#x3D;&quot;h3&quot;&gt;&#123;&#123; msg &#125;&#125;&lt;&#x2F;h3&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line"> </span><br><span class="line">  &lt;script&gt;</span><br><span class="line">    &#x2F;&#x2F; 创建 Vue 实例，得到 ViewModel</span><br><span class="line">    var vm &#x3D; new Vue(&#123;</span><br><span class="line">      el: &#39;#app&#39;,</span><br><span class="line">      data:&#123;</span><br><span class="line">        msg: &#39;ok&#39;</span><br><span class="line">      &#125;,</span><br><span class="line">      methods:&#123;</span><br><span class="line">        show()&#123;</span><br><span class="line">          console.log(&#39;执行了show方法&#39;)</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;,</span><br><span class="line">      beforeCreate()&#123; &#x2F;&#x2F; 这是我们遇到的第一个生命周期函数，表示实例完全被创建出来之前，会执行它</span><br><span class="line">        &#x2F;&#x2F; console.log(this.msg)</span><br><span class="line">        &#x2F;&#x2F; this.show()</span><br><span class="line">        &#x2F;&#x2F; 注意： 在 beforeCreate 生命周期函数执行的时候，data 和 methods 中的 数据都还没有没初始化</span><br><span class="line">      &#125;,</span><br><span class="line">      created()&#123; &#x2F;&#x2F; 这是遇到的第二个生命周期函数</span><br><span class="line">        &#x2F;&#x2F; console.log(this.msg)</span><br><span class="line">        &#x2F;&#x2F; this.show()</span><br><span class="line">        &#x2F;&#x2F;  在 created 中，data 和 methods 都已经被初始化好了！</span><br><span class="line">        &#x2F;&#x2F; 如果要调用 methods 中的方法，或者操作 data 中的数据，最早，只能在 created 中操作</span><br><span class="line">      &#125;,</span><br><span class="line">      beforeMount()&#123; &#x2F;&#x2F; 这是遇到的第3个生命周期函数，表示 模板已经在内存中编辑完成了，但是尚未把 模板渲染到 页面中</span><br><span class="line">        &#x2F;&#x2F; console.log(document.getElementById(&#39;h3&#39;).innerText)</span><br><span class="line">        &#x2F;&#x2F; 在 beforeMount 执行的时候，页面中的元素，还没有被真正替换过来，只是之前写的一些模板字符串</span><br><span class="line">      &#125;,</span><br><span class="line">      mounted()&#123; &#x2F;&#x2F; 这是遇到的第4个生命周期函数，表示，内存中的模板，已经真实的挂载到了页面中，用户已经可以看到渲染好的页面了</span><br><span class="line">        &#x2F;&#x2F; console.log(document.getElementById(&#39;h3&#39;).innerText)</span><br><span class="line">        &#x2F;&#x2F; 注意： mounted 是 实例创建期间的最后一个生命周期函数，当执行完 mounted 就表示，实例已经被完全创建好了，此时，如果没有其它操作的话，这个实例，就静静的 躺在我们的内存中，一动不动</span><br><span class="line">      &#125;,</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">      &#x2F;&#x2F; 接下来的是运行中的两个事件</span><br><span class="line">      beforeUpdate()&#123; &#x2F;&#x2F; 这时候，表示 我们的界面还没有被更新【数据被更新了吗？  数据肯定被更新了】</span><br><span class="line">        &#x2F;* console.log(&#39;界面上元素的内容：&#39; + document.getElementById(&#39;h3&#39;).innerText)</span><br><span class="line">        console.log(&#39;data 中的 msg 数据是：&#39; + this.msg) *&#x2F;</span><br><span class="line">        &#x2F;&#x2F; 得出结论： 当执行 beforeUpdate 的时候，页面中的显示的数据，还是旧的，此时 data 数据是最新的，页面尚未和 最新的数据保持同步</span><br><span class="line">      &#125;,</span><br><span class="line">      updated () &#123;</span><br><span class="line">        console.log(&#39;界面上元素的内容：&#39; + document.getElementById(&#39;h3&#39;).innerText)</span><br><span class="line">        console.log(&#39;data 中的 msg 数据是：&#39; + this.msg)</span><br><span class="line">        &#x2F;&#x2F; updated 事件执行的时候，页面和 data 数据已经保持同步了，都是最新的</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">  &lt;&#x2F;script&gt;</span><br><span class="line">&lt;&#x2F;body&gt;</span><br><span class="line"> </span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/03/18/vue/lifeCycle/" data-id="ck7y7vqqc0000ksu999xa5191" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/VUE%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" rel="tag">VUE的生命周期</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
   
     <article id="post-node/node" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -114,54 +298,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/03/18/node/node/" data-id="ck7y7ueum00000wu96789elnc" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/03/18/node/node/" data-id="ck7y7vqqg0001ksu97q899c8v" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node%E7%9A%84%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6/" rel="tag">node的缓存机制</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-vue/lifeCycle" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/03/18/vue/lifeCycle/" class="article-date">
-  <time datetime="2020-03-17T16:00:00.000Z" itemprop="datePublished">2020-03-18</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/03/18/vue/lifeCycle/">VUE的生命周期</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>每个 Vue 实例在被创建时都要经过一系列的初始化过程——例如，需要设置数据监听、编译模板、将实例挂载到 DOM 并在数据变化时更新 DOM 等。<br>同时在这个过程中也会运行一些叫做生命周期钩子的函数，这给了用户在不同阶段添加自己的代码的机会。</p>
-<h2 id="一、生命周期图示"><a href="#一、生命周期图示" class="headerlink" title="一、生命周期图示"></a>一、生命周期图示</h2><p>下图展示了实例的生命周期。你不需要立马弄明白所有的东西，不过随着你的不断学习和使用，它的参考价值会越来越高。</p>
-<p><img src="https://img-blog.csdnimg.cn/20190107221323124.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21xaW5nbw==,size_16,color_FFFFFF,t_70" alt="lifecycle"></p>
-<!-- More info: [Writing](https://hexo.io/docs/writing.html) -->
-
-<h2 id="二、Vue生命周期代码"><a href="#二、Vue生命周期代码" class="headerlink" title="二、Vue生命周期代码"></a>二、Vue生命周期代码</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang&#x3D;&quot;en&quot;&gt;</span><br><span class="line"> </span><br><span class="line">&lt;head&gt;</span><br><span class="line">  &lt;meta charset&#x3D;&quot;UTF-8&quot;&gt;</span><br><span class="line">  &lt;meta name&#x3D;&quot;viewport&quot; content&#x3D;&quot;width&#x3D;device-width, initial-scale&#x3D;1.0&quot;&gt;</span><br><span class="line">  &lt;meta http-equiv&#x3D;&quot;X-UA-Compatible&quot; content&#x3D;&quot;ie&#x3D;edge&quot;&gt;</span><br><span class="line">  &lt;title&gt;Document&lt;&#x2F;title&gt;</span><br><span class="line">  &lt;script type&#x3D;&quot;text&#x2F;javascript&quot; src&#x3D;&quot;..&#x2F;lib&#x2F;vue-2.4.0.js&quot; &gt;&lt;&#x2F;script&gt;</span><br><span class="line">  &lt;link rel&#x3D;&quot;stylesheet&quot; href&#x3D;&quot;..&#x2F;lib&#x2F;bootstrap-3.3.7.css&quot;&gt;&lt;&#x2F;link&gt;</span><br><span class="line">&lt;&#x2F;head&gt;</span><br><span class="line"> </span><br><span class="line">&lt;body&gt;</span><br><span class="line">  &lt;div id&#x3D;&quot;app&quot;&gt;</span><br><span class="line">    &lt;input type&#x3D;&quot;button&quot; value&#x3D;&quot;修改msg&quot; @click&#x3D;&quot;msg&#x3D;&#39;No&#39;&quot;&gt;</span><br><span class="line">    &lt;h3 id&#x3D;&quot;h3&quot;&gt;&#123;&#123; msg &#125;&#125;&lt;&#x2F;h3&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line"> </span><br><span class="line">  &lt;script&gt;</span><br><span class="line">    &#x2F;&#x2F; 创建 Vue 实例，得到 ViewModel</span><br><span class="line">    var vm &#x3D; new Vue(&#123;</span><br><span class="line">      el: &#39;#app&#39;,</span><br><span class="line">      data:&#123;</span><br><span class="line">        msg: &#39;ok&#39;</span><br><span class="line">      &#125;,</span><br><span class="line">      methods:&#123;</span><br><span class="line">        show()&#123;</span><br><span class="line">          console.log(&#39;执行了show方法&#39;)</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;,</span><br><span class="line">      beforeCreate()&#123; &#x2F;&#x2F; 这是我们遇到的第一个生命周期函数，表示实例完全被创建出来之前，会执行它</span><br><span class="line">        &#x2F;&#x2F; console.log(this.msg)</span><br><span class="line">        &#x2F;&#x2F; this.show()</span><br><span class="line">        &#x2F;&#x2F; 注意： 在 beforeCreate 生命周期函数执行的时候，data 和 methods 中的 数据都还没有没初始化</span><br><span class="line">      &#125;,</span><br><span class="line">      created()&#123; &#x2F;&#x2F; 这是遇到的第二个生命周期函数</span><br><span class="line">        &#x2F;&#x2F; console.log(this.msg)</span><br><span class="line">        &#x2F;&#x2F; this.show()</span><br><span class="line">        &#x2F;&#x2F;  在 created 中，data 和 methods 都已经被初始化好了！</span><br><span class="line">        &#x2F;&#x2F; 如果要调用 methods 中的方法，或者操作 data 中的数据，最早，只能在 created 中操作</span><br><span class="line">      &#125;,</span><br><span class="line">      beforeMount()&#123; &#x2F;&#x2F; 这是遇到的第3个生命周期函数，表示 模板已经在内存中编辑完成了，但是尚未把 模板渲染到 页面中</span><br><span class="line">        &#x2F;&#x2F; console.log(document.getElementById(&#39;h3&#39;).innerText)</span><br><span class="line">        &#x2F;&#x2F; 在 beforeMount 执行的时候，页面中的元素，还没有被真正替换过来，只是之前写的一些模板字符串</span><br><span class="line">      &#125;,</span><br><span class="line">      mounted()&#123; &#x2F;&#x2F; 这是遇到的第4个生命周期函数，表示，内存中的模板，已经真实的挂载到了页面中，用户已经可以看到渲染好的页面了</span><br><span class="line">        &#x2F;&#x2F; console.log(document.getElementById(&#39;h3&#39;).innerText)</span><br><span class="line">        &#x2F;&#x2F; 注意： mounted 是 实例创建期间的最后一个生命周期函数，当执行完 mounted 就表示，实例已经被完全创建好了，此时，如果没有其它操作的话，这个实例，就静静的 躺在我们的内存中，一动不动</span><br><span class="line">      &#125;,</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">      &#x2F;&#x2F; 接下来的是运行中的两个事件</span><br><span class="line">      beforeUpdate()&#123; &#x2F;&#x2F; 这时候，表示 我们的界面还没有被更新【数据被更新了吗？  数据肯定被更新了】</span><br><span class="line">        &#x2F;* console.log(&#39;界面上元素的内容：&#39; + document.getElementById(&#39;h3&#39;).innerText)</span><br><span class="line">        console.log(&#39;data 中的 msg 数据是：&#39; + this.msg) *&#x2F;</span><br><span class="line">        &#x2F;&#x2F; 得出结论： 当执行 beforeUpdate 的时候，页面中的显示的数据，还是旧的，此时 data 数据是最新的，页面尚未和 最新的数据保持同步</span><br><span class="line">      &#125;,</span><br><span class="line">      updated () &#123;</span><br><span class="line">        console.log(&#39;界面上元素的内容：&#39; + document.getElementById(&#39;h3&#39;).innerText)</span><br><span class="line">        console.log(&#39;data 中的 msg 数据是：&#39; + this.msg)</span><br><span class="line">        &#x2F;&#x2F; updated 事件执行的时候，页面和 data 数据已经保持同步了，都是最新的</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">  &lt;&#x2F;script&gt;</span><br><span class="line">&lt;&#x2F;body&gt;</span><br><span class="line"> </span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/03/18/vue/lifeCycle/" data-id="ck7y7ueuq00010wu96xln6nem" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/VUE%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" rel="tag">VUE的生命周期</a></li></ul>
 
     </footer>
   </div>
@@ -215,11 +355,11 @@
       <ul>
         
           <li>
-            <a href="/2020/03/18/node/node/">node的缓存机制</a>
+            <a href="/2020/03/18/vue/lifeCycle/">VUE的生命周期</a>
           </li>
         
           <li>
-            <a href="/2020/03/18/vue/lifeCycle/">VUE的生命周期</a>
+            <a href="/2020/03/18/node/node/">node的缓存机制</a>
           </li>
         
       </ul>
