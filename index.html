@@ -216,6 +216,67 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-pm2/pm2" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/24/pm2/pm2/" class="article-date">
+  <time datetime="2020-03-23T16:00:00.000Z" itemprop="datePublished">2020-03-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/24/pm2/pm2/">使用pm2部署vue上线</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>PM2是node进程管理工具，可以利用它来简化很多node应用管理的繁琐任务，如性能监控、自动重启、负载均衡等，而且使用非常简单。</p>
+<h2 id="一、安装"><a href="#一、安装" class="headerlink" title="一、安装"></a>一、安装</h2><p>全局安装，简直不能更简单。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g pm2</span><br></pre></td></tr></table></figure>
+
+<!-- More info: [Writing](https://hexo.io/docs/writing.html) -->
+
+<h2 id="二、vue打包"><a href="#二、vue打包" class="headerlink" title="二、vue打包"></a>二、vue打包</h2><p>使用npm run buil打包，记得要配置好打包路径，以防打包好的路径因为js文件路径错误而页面空白报错，然后丢到服务器指定文件夹</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run buil</span><br></pre></td></tr></table></figure>
+
+<!-- More info: [Server](https://hexo.io/docs/server.html) -->
+
+<h2 id="三、写一个app-js调用打包好的index-html"><a href="#三、写一个app-js调用打包好的index-html" class="headerlink" title="三、写一个app.js调用打包好的index.html"></a>三、写一个app.js调用打包好的index.html</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; app.js  记得要下载require的模块  类似写node的请求接口  把index.html放回去   dist是打好包的文件</span><br><span class="line">const fs &#x3D; require(&#39;fs&#39;);</span><br><span class="line">const path &#x3D; require(&#39;path&#39;);</span><br><span class="line">const express &#x3D; require(&#39;express&#39;);</span><br><span class="line">const chalk &#x3D; require(&#39;chalk&#39;)</span><br><span class="line">const app &#x3D; express();</span><br><span class="line">app.use(express.static(path.resolve(__dirname, &#39;..&#x2F;dist&#39;)))&#x2F;&#x2F;生产环境目录</span><br><span class="line"></span><br><span class="line">app.get(&#39;*&#39;, function(req, res) &#123;</span><br><span class="line">    const html &#x3D; fs.readFileSync(path.resolve(__dirname, &#39;..&#x2F;dist&#x2F;index.html&#39;), &#39;utf-8&#39;)&#x2F;&#x2F;生产环境目录index文件</span><br><span class="line">    res.send(html)</span><br><span class="line">&#125;)</span><br><span class="line">app.listen(8688, res &#x3D;&gt; &#123;&#x2F;&#x2F;端口</span><br><span class="line">  console.log(chalk.yellow(&#39;Start Service On 8688&#39;));</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="四、写一个pm2-json的配置文件"><a href="#四、写一个pm2-json的配置文件" class="headerlink" title="四、写一个pm2.json的配置文件"></a>四、写一个pm2.json的配置文件</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">   &quot;apps&quot;:&#123;</span><br><span class="line">    &quot;name&quot;: &quot;dev_web&quot;,                             &#x2F;&#x2F; 项目名         </span><br><span class="line">    &quot;script&quot;: &quot;.&#x2F;app.js&quot;,                        &#x2F;&#x2F; 执行文件</span><br><span class="line">    &quot;cwd&quot;: &quot;.&#x2F;&quot;,                                &#x2F;&#x2F; 根目录</span><br><span class="line">    &quot;args&quot;: &quot;&quot;,                                 &#x2F;&#x2F; 传递给脚本的参数</span><br><span class="line">    &quot;interpreter&quot;: &quot;&quot;,                          &#x2F;&#x2F; 指定的脚本解释器</span><br><span class="line">    &quot;interpreter_args&quot;: &quot;&quot;,                     &#x2F;&#x2F; 传递给解释器的参数</span><br><span class="line">    &quot;watch&quot;: true,                              &#x2F;&#x2F; 是否监听文件变动然后重启</span><br><span class="line">    &quot;ignore_watch&quot;: [                           &#x2F;&#x2F; 不用监听的文件</span><br><span class="line">        &quot;node_modules&quot;,</span><br><span class="line">        &quot;logs&quot;</span><br><span class="line">    ],</span><br><span class="line">    &quot;exec_mode&quot;: &quot;cluster_mode&quot;,                &#x2F;&#x2F; 应用启动模式，支持fork和cluster模式  将应用程序分布在所有CPU核心上,可以是整数或负数</span><br><span class="line">    &quot;instances&quot;: 1,                             &#x2F;&#x2F; 应用启动实例个数，仅在cluster模式有效 默认为fork；或者 max</span><br><span class="line">    &quot;max_memory_restart&quot;: &quot;10K&quot;,                &#x2F;&#x2F; 最大内存限制数，超出自动重启 单位可以是K（ilobyte），M（egabyte），G（igabyte）   可以是数组多少个进程</span><br><span class="line">    &quot;error_file&quot;: &quot;.&#x2F;logs&#x2F;app-err.log&quot;,         &#x2F;&#x2F; 错误日志文件</span><br><span class="line">    &quot;out_file&quot;: &quot;.&#x2F;logs&#x2F;app-out.log&quot;,           &#x2F;&#x2F; 正常日志文件</span><br><span class="line">    &quot;merge_logs&quot;: true,                         &#x2F;&#x2F; 设置追加日志而不是新建日志</span><br><span class="line">    &quot;log_date_format&quot;: &quot;YYYY-MM-DD HH:mm:ss&quot;,   &#x2F;&#x2F; 指定日志文件的时间格式</span><br><span class="line">    &quot;min_uptime&quot;: &quot;60s&quot;,                        &#x2F;&#x2F; 应用运行少于时间被认为是异常启动</span><br><span class="line">    &quot;max_restarts&quot;: 30,                         &#x2F;&#x2F; 最大异常重启次数，即小于min_uptime运行时间重启次数；</span><br><span class="line">    &quot;autorestart&quot;: true,                        &#x2F;&#x2F; 默认为true, 发生异常的情况下自动重启</span><br><span class="line">    &quot;cron_restart&quot;: &quot;&quot;,                         &#x2F;&#x2F; crontab时间格式重启应用，目前只支持cluster模式;</span><br><span class="line">    &quot;restart_delay&quot;: 60,                        &#x2F;&#x2F; 异常重启情况下，延时重启时间</span><br><span class="line">    &quot;env&quot;: &#123;</span><br><span class="line">       &quot;NODE_ENV&quot;: &quot;production&quot;,                &#x2F;&#x2F; 环境参数，当前指定为生产环境 process.env.NODE_ENV</span><br><span class="line">       &quot;REMOTE_ADDR&quot;: &quot;&quot;                        &#x2F;&#x2F; process.env.REMOTE_ADDR</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;env_dev&quot;: &#123;</span><br><span class="line">        &quot;NODE_ENV&quot;: &quot;development&quot;,              &#x2F;&#x2F; 环境参数，当前指定为开发环境 pm2 start app.js --env_dev</span><br><span class="line">        &quot;REMOTE_ADDR&quot;: &quot;&quot;</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;env_test&quot;: &#123;                               &#x2F;&#x2F; 环境参数，当前指定为测试环境 pm2 start app.js --env_test</span><br><span class="line">        &quot;NODE_ENV&quot;: &quot;test&quot;,</span><br><span class="line">        &quot;REMOTE_ADDR&quot;: &quot;&quot;</span><br><span class="line">    &#125;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="五、执行pm2命令"><a href="#五、执行pm2命令" class="headerlink" title="五、执行pm2命令"></a>五、执行pm2命令</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pm2 start pm2.json</span><br></pre></td></tr></table></figure>
+
+<h2 id="六、完成"><a href="#六、完成" class="headerlink" title="六、完成"></a>六、完成</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">这样就可以拉，可以使用服务器的ip地址以及app.js用的端口号访问你打包好的项目了，更多Pm2命令可以看官网</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/03/24/pm2/pm2/" data-id="ck85hwh6d0001v4u95pz43bt7" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BD%BF%E7%94%A8pm2%E9%83%A8%E7%BD%B2vue%E4%B8%8A%E7%BA%BF/" rel="tag">使用pm2部署vue上线</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-node/node" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/03/18/node/node/" class="article-date">
@@ -258,7 +319,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/03/18/node/node/" data-id="ck7ybvydx0000sou97mnla6y1" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/03/18/node/node/" data-id="ck85hwh680000v4u959zs0nra" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node%E7%9A%84%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6/" rel="tag">node的缓存机制</a></li></ul>
@@ -302,7 +363,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/03/18/vue/lifeCycle/" data-id="ck7ybvye10001sou9031l0c4t" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/03/18/vue/lifeCycle/" data-id="ck85hwh6o0006v4u9cnvahuo7" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/VUE%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" rel="tag">VUE的生命周期</a></li></ul>
@@ -327,7 +388,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/VUE%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" rel="tag">VUE的生命周期</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node%E7%9A%84%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6/" rel="tag">node的缓存机制</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/VUE%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" rel="tag">VUE的生命周期</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node%E7%9A%84%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6/" rel="tag">node的缓存机制</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BD%BF%E7%94%A8pm2%E9%83%A8%E7%BD%B2vue%E4%B8%8A%E7%BA%BF/" rel="tag">使用pm2部署vue上线</a></li></ul>
     </div>
   </div>
 
@@ -337,7 +398,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/VUE%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" style="font-size: 10px;">VUE的生命周期</a> <a href="/tags/node%E7%9A%84%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6/" style="font-size: 10px;">node的缓存机制</a>
+      <a href="/tags/VUE%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" style="font-size: 10px;">VUE的生命周期</a> <a href="/tags/node%E7%9A%84%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6/" style="font-size: 10px;">node的缓存机制</a> <a href="/tags/%E4%BD%BF%E7%94%A8pm2%E9%83%A8%E7%BD%B2vue%E4%B8%8A%E7%BA%BF/" style="font-size: 10px;">使用pm2部署vue上线</a>
     </div>
   </div>
 
@@ -357,6 +418,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2020/03/24/pm2/pm2/">使用pm2部署vue上线</a>
+          </li>
         
           <li>
             <a href="/2020/03/18/node/node/">node的缓存机制</a>
