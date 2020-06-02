@@ -73,6 +73,30 @@
   		text-align: center;
   		font-size: 12px;
   }
+  .info-content,.bolck-content{
+  	width: 1200px;
+  	margin: 0px auto;
+  	/*height: 600px;*/
+  	/*border: 1px solid #ccc;*/
+  	padding-bottom: 20px;
+  }
+  .card{
+  	padding: 10px 10px;
+  	margin-left: 20px;
+  	margin-top: 20px;
+  	border: 1px solid #ccc;
+  	width: 228px;
+  }
+	.card:hover{
+			box-shadow: 0px 2px 8px 0px #ccc;
+	}
+	.bolck-content{
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-around;
+	}
+
+	}
 </style>
 <meta name="generator" content="Hexo 4.2.0"></head>
 
@@ -126,6 +150,7 @@
 		</nav>
 		<div id="desc">
 			<h2>Here You</h2>
+			<h2>You are The css to my Html</h2>
 			<p>今天你秃了嘛？</p>
 			<p>白日放歌须纵酒，青春作伴好还乡。【唐代】杜甫《闻官军收河南河北》</p>
 			<p><a>开始阅读</a> <a>GitHub</a></p>
@@ -135,15 +160,102 @@
 
 
 <main>
-	 <aside class="info">
+	 <!--<aside class="info">
 	 		<h2>个人简介</h2>
 	 		<p>	Personal Introduction</p>
-	 </aside>
+	 		<div class="info-content">
+	 					
+	 		</div>
+	 </aside>-->
 	 <aside class="bolck">
 	 		<h2>我的文章</h2>
 	 		<p>My article</p>
+	 		<div class="bolck-content">
+	 				<div class="card" style="width: 25rem;">
+						  <img src="css/images/vue.png" width="100%" height="128px" class="card-img-top" alt="...">
+						  <div class="card-body">
+						    <h5 class="card-title">vue生命周期</h5>
+						    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+						    <p>作者：李平勇</p>
+						    <p style="text-align: center;"><a href="#" class="btn btn-primary">查看</a></p> 
+						  </div>
+						</div>
+						
+						<div class="card" style="width: 25rem;">
+						  <img src="css/images/node.png" width="100%" height="128px" class="card-img-top" alt="...">
+						  <div class="card-body">
+						    <h5 class="card-title">node缓存机制</h5>
+						    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+						    <p>作者：李平勇</p>
+						    <p style="text-align: center;"><a href="#" class="btn btn-primary">查看</a></p> 
+						  </div>
+						</div>
+						
+						<div class="card" style="width: 25rem;">
+						  <img src="css/images/pm2.jpg" width="100%" height="128px" class="card-img-top" alt="...">
+						  <div class="card-body">
+						    <h5 class="card-title">使用PM2部署node</h5>
+						    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+						    <p>作者：李平勇</p>
+						    <p style="text-align: center;"><a href="#" class="btn btn-primary">查看</a></p> 
+						  </div>
+						</div>
+						
+						<div class="card" style="width: 25rem;">
+						  <img src="css/images/webpack.jpg" width="100%" height="128px" class="card-img-top" alt="...">
+						  <div class="card-body">
+						    <h5 class="card-title">webpack打包</h5>
+						    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+						    <p>作者：李平勇</p>
+						    <p style="text-align: center;"><a href="#" class="btn btn-primary">查看</a></p> 
+						  </div>
+						</div>
+						<div class="card" style="width: 25rem;">
+						  <img src="css/images/diff.jpg" width="100%" height="128px" class="card-img-top" alt="...">
+						  <div class="card-body">
+						    <h5 class="card-title">diff算法</h5>
+						    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+						    <p>作者：李平勇</p>
+						    <p style="text-align: center;"><a href="#" class="btn btn-primary">查看</a></p> 
+						  </div>
+						</div>
+						<div class="card" style="width: 25rem;">
+						  <img src="css/images/react-ssr.jpg" width="100%" height="128px" class="card-img-top" alt="...">
+						  <div class="card-body">
+						    <h5 class="card-title">使用 react搭建ssr框架</h5>
+						    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+						    <p>作者：李平勇</p>
+						    <p style="text-align: center;"><a href="#" class="btn btn-primary">查看</a></p> 
+						  </div>
+						</div>
+						
+						<div class="card" style="width: 25rem;">
+						  <img src="css/images/timg.jpg" width="100%" height="128px" class="card-img-top" alt="...">
+						  <div class="card-body">
+						    <h5 class="card-title">js常见面试题</h5>
+						    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+						    <p>作者：李平勇</p>
+						    <p style="text-align: center;"><a href="#" class="btn btn-primary">查看</a></p> 
+						  </div>
+						</div>
+						
+						<div class="card" style="width: 25rem;">
+						  <img src="css/images/react.jpg" width="100%" height="128px" class="card-img-top" alt="...">
+						  <div class="card-body">
+						    <h5 class="card-title">了解react</h5>
+						    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+						    <p>作者：李平勇</p>
+						    <p style="text-align: center;"><a href="#" class="btn btn-primary">查看</a></p> 
+						  </div>
+						</div>
+	 		</div>
 	 </aside>
 </main>
+
+
+<footer>
+	
+</footer>
 
 
     
