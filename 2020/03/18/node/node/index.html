@@ -5,19 +5,16 @@
   
 
   
-  <title>node的缓存机制 | Here You</title>
+  <title>Here You</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="缓存是node开发中一个很重要的概念，它应用在很多地方，例如浏览器有缓存、DNS有缓存、包括服务器也有缓存。 一、缓存作用那缓存是为了做什么 12341.为了提高速度，提高效率。2.减少数据传输，节省网费。3.减少服务器的负担，提高网站性能。4.加快客户端加载网页的速度。    二、缓存分类那缓存有几种策略呢？ 强制缓存：1、概念：12客户端访问服务器请求资源，请求成功之后客户端会缓存到本地，缓存">
-<meta property="og:type" content="article">
-<meta property="og:title" content="node的缓存机制">
-<meta property="og:url" content="http://yoursite.com/2020/03/18/node/node/index.html">
+  <meta name="description" content="一个来自深圳的代码dog">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Here You">
+<meta property="og:url" content="http://yoursite.com/index.html">
 <meta property="og:site_name" content="Here You">
-<meta property="og:description" content="缓存是node开发中一个很重要的概念，它应用在很多地方，例如浏览器有缓存、DNS有缓存、包括服务器也有缓存。 一、缓存作用那缓存是为了做什么 12341.为了提高速度，提高效率。2.减少数据传输，节省网费。3.减少服务器的负担，提高网站性能。4.加快客户端加载网页的速度。    二、缓存分类那缓存有几种策略呢？ 强制缓存：1、概念：12客户端访问服务器请求资源，请求成功之后客户端会缓存到本地，缓存">
+<meta property="og:description" content="一个来自深圳的代码dog">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-03-17T16:00:00.000Z">
-<meta property="article:modified_time" content="2020-03-18T11:11:01.914Z">
 <meta property="article:author" content="PeateLi">
-<meta property="article:tag" content="node的缓存机制">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternate" href="/atom.xml" title="Here You" type="application/atom+xml">
@@ -38,332 +35,117 @@
 <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <style >
-  #header{
-    height: 100%;
+	a{
+		text-decoration: none;
+		color: #333;
+	}
+  header{
+  	width: 100%;
+  	height: 750px;
+  	background: url(css/images/header.jpg)0px 0px no-repeat;
   }
-  #carousel-example-generic{
-    height: 100%;
-  }
-  .carousel-inner{
-    height: 100%;
-  }
-  .item{
-    height: 100%;
-    width: 100%;
-    position: relative;
-  }
-  .item .bg{
-    position: absolute;
-    left: 0px;
-    top: 0px;
-    height: 100%;
-    width: 100%;
-    background-color:#F44336; 
-    opacity: 0.1;
-  }
-  .item img{
-    height: 100% !important;
-    width: 100%;
-  }
-  .btn{
-    display: inline-block;
-    padding: 0px 35px;
-    border: 1px solid #fff;
-    height: 43px;
-    line-height: 43px;
-    border-radius: 10px;
-    transition: 1s;
-    color: white;
-  }
-  .btn:hover{
-    border: 1px solid red;
-    background-color: red;
-    border: 0px;
-    color: #fff;
 
-    
+  #desc{
+		text-align: center;
+		margin-top: 150px;
   }
-  .carousel-caption{
-    position: relative;
-    top: -60%;
-    left: 0%;
+  #desc a{
+  	display: inline-block;
+  	width: 120px;
+  	height: 40px;
+  	line-height: 40px;
+  	border: 1px solid #fff;
+  	border-radius: 10px;
+  	cursor: pointer;
   }
-  .navbar.navbar-default.navbar-fixed-top{
-    background-color: #A58F8A;
-    border-bottom-width: 0px;
+  #desc a:hover{
+  	text-underline: none;
+  	background-color: cornflowerblue;
+  	color: #fff;
   }
-  .navbar.navbar-default.navbar-fixed-top a{
-    color: #fff;
+  main{
+  	margin-top: 50px;
+  }
+  .info h2,.bolck h2{
+  	text-align: center;
+  }
+  .info p,.bolck p{
+  		text-align: center;
+  		font-size: 12px;
   }
 </style>
 <meta name="generator" content="Hexo 4.2.0"></head>
 
 <body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <!-- <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Here You</a>
-      </h1>
-      
-        <h2 id="subtitle-wrap">
-          <a href="/" id="subtitle">今天你秃了嘛？</a>
-        </h2>
-      
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
-      </div>
-    </div>
-  </div> -->
-  <nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container-fluid">
-      <!-- Brand and toggle get grouped for better mobile display -->
-      <div class="navbar-header">
-        <a class="navbar-brand" href="#">Here You - 李平勇</a>
-      </div>
-  
-      <!-- Collect the nav links, forms, and other content for toggling -->
-      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav navbar-right" style="margin-right: 20px;">
-          <li><a href="#"> <i class="glyphicon glyphicon-home"></i> 首页</a></li>
-          <li><a href="#"> <i class="glyphicon glyphicon-tags"></i> 标签</a></li>
-          <li><a href="#"> <i class="glyphicon glyphicon-bookmark"></i> 分类</a></li>
-          <li><a href="#"> <i class="glyphicon glyphicon-folder-close"></i> 归档</a></li>
-          <li><a href="#"> <i class="glyphicon glyphicon-user"></i> 关于</a></li>
-          <li><a href="#"> <i class="glyphicon glyphicon-pencil"></i> 留言</a></li>
-          <li><a href="#"> <i class="glyphicon glyphicon-search"></i> </a></li>
-        </ul>
-      </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
-  </nav>
-  <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-    <!-- Indicators -->
-    <ol class="carousel-indicators">
-      <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-      <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-      <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-    </ol>
-   
-    <!-- Wrapper for slides -->
-    <div class="carousel-inner" role="listbox">
-      <div class="item active">
-        <div class="bg"></div>
-        <img src="http://oss.mflyyou.cn/source/medias/banner/4.jpg" alt="...">
-        <div class="carousel-caption">
-          <h3><a href="/" id="logo">Here You</a></h3>
-          <h2 id="subtitle-wrap">
-            <a href="/" id="subtitle">今天你秃了嘛？</a>
-          </h2>
-          <p><span>白日放歌须纵酒，青春作伴好还乡。</span><span>【唐代】杜甫《闻官军收河南河北》</span></p>
-          <p>
-            <a class="btn" href=""> <i class="glyphicon glyphicon-info-sign"></i> 开始阅读</a>
-            <a class="btn" href=""> <i class="glyphicon glyphicon-tag"></i> GITHUB</a>
-          </p>
-        </div>
-      </div>
-      <div class="item">
-        <div class="bg"></div>
-        <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1584596154400&di=deeb5e420f9b4d31cee4534e6632dbd5&imgtype=0&src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2F2018-01-25%2F5a699c4a6ed20.jpg" alt="...">
-        <div class="carousel-caption">
-          <h3><a href="/" id="logo">Node缓存机制</a></h3>
-          <p>node缓存机制看这篇就够了</p>
-          <p>
-            <a class="btn" href=""> <i class="glyphicon glyphicon-info-sign"></i> 阅读更多</a>
-          </p>
-        </div>
-      </div>
-      <div class="item">
-        <div class="bg"></div>
-        <img src="http://hereyou.club/css/images/banner.jpg" alt="...">
-          <div class="carousel-caption">
-            <h3><a href="/" id="logo">VUE生命周期</a></h3>
-            <p>八个钩子，四个周期</p>
-            <p>
-              <a class="btn" href=""> <i class="glyphicon glyphicon-info-sign"></i> 阅读更多</a>
-            </p>
-          </div>
-      </div>
-    </div>
-    
-  
-    <!-- Controls -->
-    <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-      <span class="sr-only">Previous</span>
-    </a>
-    <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-      <span class="sr-only">Next</span>
-    </a>
-  </div>
+ <!--
+ 	作者：Peate
+ 	时间：2020-06-02
+ 	描述：头部
+ -->
+ 
+<header>
+	<div id="nav">
+		<nav class="navbar navbar-default">
+		  <div class="container-fluid">
+		    <!-- Brand and toggle get grouped for better mobile display -->
+		    <div class="navbar-header">
+		      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+		        <span class="sr-only">Toggle navigation</span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		      </button>
+		      <a class="navbar-brand" href="#">Here You - 李平勇</a>
+		    </div>
+		
+		    <!-- Collect the nav links, forms, and other content for toggling -->
+		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+		      <ul class="nav navbar-nav">
+		        <li ><a href="#">首页 <span class="sr-only">(current)</span></a></li>
+		        <li><a href="#">文档</a></li>
+		      </ul>
+		      <form class="navbar-form navbar-left">
+		        <div class="form-group">
+		          <input type="text" class="form-control" placeholder="Search">
+		        </div>
+		        <button type="submit" class="btn btn-default">Submit</button>
+		      </form>
+		      <ul class="nav navbar-nav navbar-right">
+		        <li><a href="#">Github</a></li>
+		        <li class="dropdown">
+		          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">联系 <span class="caret"></span></a>
+		          <ul class="dropdown-menu">
+		            <li><a href="#">QQ：644220002</a></li>
+		            <li><a href="#">微博：自闭了嘛？</a></li>
+		            <li><a href="#">公众号： NewTechnology</a></li>
+		          </ul>
+		        </li>
+		      </ul>
+		    </div><!-- /.navbar-collapse -->
+		  </div><!-- /.container-fluid -->
+		</nav>
+		<div id="desc">
+			<h2>Here You</h2>
+			<p>今天你秃了嘛？</p>
+			<p>白日放歌须纵酒，青春作伴好还乡。【唐代】杜甫《闻官军收河南河北》</p>
+			<p><a>开始阅读</a> <a>GitHub</a></p>
+		</div>
+	</div>
 </header>
-      <div class="outer">
-        <section id="main"><article id="post-node/node" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/03/18/node/node/" class="article-date">
-  <time datetime="2020-03-17T16:00:00.000Z" itemprop="datePublished">2020-03-18</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      node的缓存机制
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>缓存是node开发中一个很重要的概念，它应用在很多地方，例如浏览器有缓存、DNS有缓存、包括服务器也有缓存。</p>
-<h2 id="一、缓存作用"><a href="#一、缓存作用" class="headerlink" title="一、缓存作用"></a>一、缓存作用</h2><p>那缓存是为了做什么</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1.为了提高速度，提高效率。</span><br><span class="line">2.减少数据传输，节省网费。</span><br><span class="line">3.减少服务器的负担，提高网站性能。</span><br><span class="line">4.加快客户端加载网页的速度。</span><br></pre></td></tr></table></figure>
-
-<!-- More info: [Writing](https://hexo.io/docs/writing.html) -->
-
-<h2 id="二、缓存分类"><a href="#二、缓存分类" class="headerlink" title="二、缓存分类"></a>二、缓存分类</h2><p>那缓存有几种策略呢？</p>
-<h3 id="强制缓存："><a href="#强制缓存：" class="headerlink" title="强制缓存："></a>强制缓存：</h3><h4 id="1、概念："><a href="#1、概念：" class="headerlink" title="1、概念："></a>1、概念：</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">客户端访问服务器请求资源，请求成功之后客户端会缓存到本地，</span><br><span class="line">缓存到本地之后，如果以后客户端再请求该资源此时不需要请求服务器了，直接访问本地的就可以。</span><br></pre></td></tr></table></figure>
-
-<!-- More info: [Server](https://hexo.io/docs/server.html) -->
-
-<h4 id="2、特点："><a href="#2、特点：" class="headerlink" title="2、特点："></a>2、特点：</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">强制缓存不需要与服务器发生交互</span><br></pre></td></tr></table></figure>
-<h4 id="3、客户端访问强制缓存的流程图解"><a href="#3、客户端访问强制缓存的流程图解" class="headerlink" title="3、客户端访问强制缓存的流程图解"></a>3、客户端访问强制缓存的流程图解</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1）缓存命中</span><br><span class="line">客户端请求数据，现在本地的缓存数据库中查找，如果本地缓存数据库中有该数据，且该数据没有失效。则取缓存数据库中的该数据返回给客户端。</span><br><span class="line"></span><br><span class="line">2）缓存未命中</span><br><span class="line">客户端请求数据，现在本地的缓存数据库中查找，如果本地缓存数据库中有该数据，且该数据失效。</span><br><span class="line">则向服务器请求该数据，此时服务器返回该数据和该数据的缓存规则返回给客户端，客户端收到该数据和缓存规则后，一起放到本地的缓存数据库中留存。以备下次使用。</span><br></pre></td></tr></table></figure>
-<h4 id="4、如何实现强制缓存？"><a href="#4、如何实现强制缓存？" class="headerlink" title="4、如何实现强制缓存？"></a>4、如何实现强制缓存？</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">1、浏览器会将文件缓存到Cache目录，第二次请求时浏览器会先检查Cache目录下是否含有该文件，如果有，并且还没到Expires设置的时间，即文件还没有过期，那么此时浏览器将直接从Cache目录中读取文件，而不再发送请求</span><br><span class="line">2、Expires是服务器响应消息头字段，在响应http请求时告诉浏览器在过期时间前浏览器可以直接从浏览器缓存取数据，而无需再次请求,这是HTTP1.0的内容，现在浏览器均默认使用HTTP1.1,所以基本可以忽略</span><br><span class="line">3、Cache-Control与Expires的作用一致，都是指明当前资源的有效期，控制浏览器是否直接从浏览器缓存取数据还是重新发请求到服务器取数据,如果同时设置的话，其优先级高于Expires</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line">* 1. 第一次访问服务器的时候，服务器返回资源和缓存的标识，客户端则会把此资源缓存在本地的缓存数据库中。</span><br><span class="line">* 2. 第二次客户端需要此数据的时候，要取得缓存的标识，然后去问一下服务器我的资源是否是最新的。</span><br><span class="line">* 如果是最新的则直接使用缓存数据，如果不是最新的则服务器返回新的资源和缓存规则，客户端根据缓存规则缓存新的数据。</span><br><span class="line">*/</span><br><span class="line"><span class="built_in">let</span> http = require(<span class="string">'http'</span>);</span><br><span class="line"><span class="built_in">let</span> url = require(<span class="string">'url'</span>);</span><br><span class="line"><span class="built_in">let</span> path = require(<span class="string">'path'</span>);</span><br><span class="line"><span class="built_in">let</span> fs = require(<span class="string">'fs'</span>);</span><br><span class="line"><span class="built_in">let</span> mime = require(<span class="string">'mime'</span>);</span><br><span class="line"><span class="built_in">let</span> crypto = require(<span class="string">'crypto'</span>);</span><br><span class="line">/**</span><br><span class="line">* 强制缓存</span><br><span class="line">* 把资源缓存在客户端，如果客户端再次需要此资源的时候，先获取到缓存中的数据，看是否过期，如果过期了。再请求服务器</span><br><span class="line">* 如果没过期，则根本不需要向服务器确认，直接使用本地缓存即可</span><br><span class="line">*/</span><br><span class="line">http.createServer(<span class="keyword">function</span> (req, res) &#123;</span><br><span class="line">   <span class="built_in">let</span> &#123; pathname &#125; = url.parse(req.url, <span class="literal">true</span>);</span><br><span class="line">   <span class="built_in">let</span> filepath = path.join(__dirname, pathname);</span><br><span class="line">   console.log(filepath);</span><br><span class="line">   fs.stat(filepath, (err, <span class="built_in">stat</span>) =&gt; &#123;</span><br><span class="line">       <span class="keyword">if</span> (err) &#123;</span><br><span class="line">           <span class="built_in">return</span> sendError(req, res);</span><br><span class="line">       &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">           send(req, res, filepath);</span><br><span class="line">&#125;</span><br><span class="line">&#125;);</span><br><span class="line">&#125;).listen(8080);</span><br><span class="line"><span class="keyword">function</span> sendError(req, res) &#123;</span><br><span class="line">   res.end(<span class="string">'Not Found'</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">function</span> send(req, res, filepath) &#123;</span><br><span class="line">   res.setHeader(<span class="string">'Content-Type'</span>, mime.getType(filepath));</span><br><span class="line">   //expires指定了此缓存的过期时间，此响应头是1.0定义的，在1.1里面已经不再使用了</span><br><span class="line">   res.setHeader(<span class="string">'Expires'</span>, new Date(Date.now() + 30 * 1000).toUTCString());</span><br><span class="line">   res.setHeader(<span class="string">'Cache-Control'</span>, <span class="string">'max-age=30'</span>);</span><br><span class="line">   fs.createReadStream(filepath).pipe(res);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="对比缓存："><a href="#对比缓存：" class="headerlink" title="对比缓存："></a>对比缓存：</h3><h4 id="1、概念：-1"><a href="#1、概念：-1" class="headerlink" title="1、概念："></a>1、概念：</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">浏览器第一次请求数据时，服务器会将缓存标识与数据一起返回给客户端，客户端将二者备份至缓存数据库中。</span><br><span class="line">再次请求数据时，客户端将备份的缓存标识发送给服务器，服务器根据缓存标识进行判断，判断成功后，返回304状态码，通知客户端比较成功，可以使用缓存数据。</span><br></pre></td></tr></table></figure>
-<h4 id="2、特点：-1"><a href="#2、特点：-1" class="headerlink" title="2、特点："></a>2、特点：</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">需要进行比较判断是否可以使用缓存：</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/03/18/node/node/" data-id="ck85igj6t0001f0u9cg4bfss0" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node%E7%9A%84%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6/" rel="tag">node的缓存机制</a></li></ul>
-
-    </footer>
-  </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2020/03/18/vue/lifeCycle/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          VUE的生命周期
-        
-      </div>
-    </a>
-  
-  
-</nav>
-
-  
-</article>
-
-</section>
-        
-          <aside id="sidebar">
-  
-    
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
-    <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/VUE%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" rel="tag">VUE的生命周期</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node%E7%9A%84%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6/" rel="tag">node的缓存机制</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BD%BF%E7%94%A8pm2%E9%83%A8%E7%BD%B2vue%E4%B8%8A%E7%BA%BF/" rel="tag">使用pm2部署vue上线</a></li></ul>
-    </div>
-  </div>
 
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/VUE%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" style="font-size: 10px;">VUE的生命周期</a> <a href="/tags/node%E7%9A%84%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6/" style="font-size: 10px;">node的缓存机制</a> <a href="/tags/%E4%BD%BF%E7%94%A8pm2%E9%83%A8%E7%BD%B2vue%E4%B8%8A%E7%BA%BF/" style="font-size: 10px;">使用pm2部署vue上线</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li></ul>
-    </div>
-  </div>
+<main>
+	 <aside class="info">
+	 		<h2>个人简介</h2>
+	 		<p>	Personal Introduction</p>
+	 </aside>
+	 <aside class="bolck">
+	 		<h2>我的文章</h2>
+	 		<p>My article</p>
+	 </aside>
+</main>
 
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2020/03/24/pm2/pm2/">使用pm2部署vue上线</a>
-          </li>
-        
-          <li>
-            <a href="/2020/03/18/vue/lifeCycle/">VUE的生命周期</a>
-          </li>
-        
-          <li>
-            <a href="/2020/03/18/node/node/">node的缓存机制</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2020 PeateLi<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
-</footer>
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
     
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -382,7 +164,5 @@
 
 
 
-
-  </div>
 </body>
 </html>

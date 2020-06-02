@@ -5,19 +5,16 @@
   
 
   
-  <title>使用pm2部署vue上线 | Here You</title>
+  <title>Here You</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="PM2是node进程管理工具，可以利用它来简化很多node应用管理的繁琐任务，如性能监控、自动重启、负载均衡等，而且使用非常简单。 一、安装全局安装，简直不能更简单。 1npm install -g pm2    二、vue打包使用npm run buil打包，记得要配置好打包路径，以防打包好的路径因为js文件路径错误而页面空白报错，然后丢到服务器指定文件夹 1npm run buil    三、">
-<meta property="og:type" content="article">
-<meta property="og:title" content="使用pm2部署vue上线">
-<meta property="og:url" content="http://yoursite.com/2020/03/24/pm2/pm2/index.html">
+  <meta name="description" content="一个来自深圳的代码dog">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Here You">
+<meta property="og:url" content="http://yoursite.com/index.html">
 <meta property="og:site_name" content="Here You">
-<meta property="og:description" content="PM2是node进程管理工具，可以利用它来简化很多node应用管理的繁琐任务，如性能监控、自动重启、负载均衡等，而且使用非常简单。 一、安装全局安装，简直不能更简单。 1npm install -g pm2    二、vue打包使用npm run buil打包，记得要配置好打包路径，以防打包好的路径因为js文件路径错误而页面空白报错，然后丢到服务器指定文件夹 1npm run buil    三、">
+<meta property="og:description" content="一个来自深圳的代码dog">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-03-23T16:00:00.000Z">
-<meta property="article:modified_time" content="2020-03-24T06:04:52.591Z">
 <meta property="article:author" content="PeateLi">
-<meta property="article:tag" content="使用pm2部署vue上线">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternate" href="/atom.xml" title="Here You" type="application/atom+xml">
@@ -38,335 +35,117 @@
 <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <style >
-  #header{
-    height: 100%;
+	a{
+		text-decoration: none;
+		color: #333;
+	}
+  header{
+  	width: 100%;
+  	height: 750px;
+  	background: url(css/images/header.jpg)0px 0px no-repeat;
   }
-  #carousel-example-generic{
-    height: 100%;
-  }
-  .carousel-inner{
-    height: 100%;
-  }
-  .item{
-    height: 100%;
-    width: 100%;
-    position: relative;
-  }
-  .item .bg{
-    position: absolute;
-    left: 0px;
-    top: 0px;
-    height: 100%;
-    width: 100%;
-    background-color:#F44336; 
-    opacity: 0.1;
-  }
-  .item img{
-    height: 100% !important;
-    width: 100%;
-  }
-  .btn{
-    display: inline-block;
-    padding: 0px 35px;
-    border: 1px solid #fff;
-    height: 43px;
-    line-height: 43px;
-    border-radius: 10px;
-    transition: 1s;
-    color: white;
-  }
-  .btn:hover{
-    border: 1px solid red;
-    background-color: red;
-    border: 0px;
-    color: #fff;
 
-    
+  #desc{
+		text-align: center;
+		margin-top: 150px;
   }
-  .carousel-caption{
-    position: relative;
-    top: -60%;
-    left: 0%;
+  #desc a{
+  	display: inline-block;
+  	width: 120px;
+  	height: 40px;
+  	line-height: 40px;
+  	border: 1px solid #fff;
+  	border-radius: 10px;
+  	cursor: pointer;
   }
-  .navbar.navbar-default.navbar-fixed-top{
-    background-color: #A58F8A;
-    border-bottom-width: 0px;
+  #desc a:hover{
+  	text-underline: none;
+  	background-color: cornflowerblue;
+  	color: #fff;
   }
-  .navbar.navbar-default.navbar-fixed-top a{
-    color: #fff;
+  main{
+  	margin-top: 50px;
+  }
+  .info h2,.bolck h2{
+  	text-align: center;
+  }
+  .info p,.bolck p{
+  		text-align: center;
+  		font-size: 12px;
   }
 </style>
 <meta name="generator" content="Hexo 4.2.0"></head>
 
 <body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <!-- <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Here You</a>
-      </h1>
-      
-        <h2 id="subtitle-wrap">
-          <a href="/" id="subtitle">今天你秃了嘛？</a>
-        </h2>
-      
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
-      </div>
-    </div>
-  </div> -->
-  <nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container-fluid">
-      <!-- Brand and toggle get grouped for better mobile display -->
-      <div class="navbar-header">
-        <a class="navbar-brand" href="#">Here You - 李平勇</a>
-      </div>
-  
-      <!-- Collect the nav links, forms, and other content for toggling -->
-      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav navbar-right" style="margin-right: 20px;">
-          <li><a href="#"> <i class="glyphicon glyphicon-home"></i> 首页</a></li>
-          <li><a href="#"> <i class="glyphicon glyphicon-tags"></i> 标签</a></li>
-          <li><a href="#"> <i class="glyphicon glyphicon-bookmark"></i> 分类</a></li>
-          <li><a href="#"> <i class="glyphicon glyphicon-folder-close"></i> 归档</a></li>
-          <li><a href="#"> <i class="glyphicon glyphicon-user"></i> 关于</a></li>
-          <li><a href="#"> <i class="glyphicon glyphicon-pencil"></i> 留言</a></li>
-          <li><a href="#"> <i class="glyphicon glyphicon-search"></i> </a></li>
-        </ul>
-      </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
-  </nav>
-  <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-    <!-- Indicators -->
-    <ol class="carousel-indicators">
-      <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-      <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-      <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-    </ol>
-   
-    <!-- Wrapper for slides -->
-    <div class="carousel-inner" role="listbox">
-      <div class="item active">
-        <div class="bg"></div>
-        <img src="http://oss.mflyyou.cn/source/medias/banner/4.jpg" alt="...">
-        <div class="carousel-caption">
-          <h3><a href="/" id="logo">Here You</a></h3>
-          <h2 id="subtitle-wrap">
-            <a href="/" id="subtitle">今天你秃了嘛？</a>
-          </h2>
-          <p><span>白日放歌须纵酒，青春作伴好还乡。</span><span>【唐代】杜甫《闻官军收河南河北》</span></p>
-          <p>
-            <a class="btn" href=""> <i class="glyphicon glyphicon-info-sign"></i> 开始阅读</a>
-            <a class="btn" href=""> <i class="glyphicon glyphicon-tag"></i> GITHUB</a>
-          </p>
-        </div>
-      </div>
-      <div class="item">
-        <div class="bg"></div>
-        <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1584596154400&di=deeb5e420f9b4d31cee4534e6632dbd5&imgtype=0&src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2F2018-01-25%2F5a699c4a6ed20.jpg" alt="...">
-        <div class="carousel-caption">
-          <h3><a href="/" id="logo">Node缓存机制</a></h3>
-          <p>node缓存机制看这篇就够了</p>
-          <p>
-            <a class="btn" href=""> <i class="glyphicon glyphicon-info-sign"></i> 阅读更多</a>
-          </p>
-        </div>
-      </div>
-      <div class="item">
-        <div class="bg"></div>
-        <img src="http://hereyou.club/css/images/banner.jpg" alt="...">
-          <div class="carousel-caption">
-            <h3><a href="/" id="logo">VUE生命周期</a></h3>
-            <p>八个钩子，四个周期</p>
-            <p>
-              <a class="btn" href=""> <i class="glyphicon glyphicon-info-sign"></i> 阅读更多</a>
-            </p>
-          </div>
-      </div>
-    </div>
-    
-  
-    <!-- Controls -->
-    <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-      <span class="sr-only">Previous</span>
-    </a>
-    <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-      <span class="sr-only">Next</span>
-    </a>
-  </div>
+ <!--
+ 	作者：Peate
+ 	时间：2020-06-02
+ 	描述：头部
+ -->
+ 
+<header>
+	<div id="nav">
+		<nav class="navbar navbar-default">
+		  <div class="container-fluid">
+		    <!-- Brand and toggle get grouped for better mobile display -->
+		    <div class="navbar-header">
+		      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+		        <span class="sr-only">Toggle navigation</span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		      </button>
+		      <a class="navbar-brand" href="#">Here You - 李平勇</a>
+		    </div>
+		
+		    <!-- Collect the nav links, forms, and other content for toggling -->
+		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+		      <ul class="nav navbar-nav">
+		        <li ><a href="#">首页 <span class="sr-only">(current)</span></a></li>
+		        <li><a href="#">文档</a></li>
+		      </ul>
+		      <form class="navbar-form navbar-left">
+		        <div class="form-group">
+		          <input type="text" class="form-control" placeholder="Search">
+		        </div>
+		        <button type="submit" class="btn btn-default">Submit</button>
+		      </form>
+		      <ul class="nav navbar-nav navbar-right">
+		        <li><a href="#">Github</a></li>
+		        <li class="dropdown">
+		          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">联系 <span class="caret"></span></a>
+		          <ul class="dropdown-menu">
+		            <li><a href="#">QQ：644220002</a></li>
+		            <li><a href="#">微博：自闭了嘛？</a></li>
+		            <li><a href="#">公众号： NewTechnology</a></li>
+		          </ul>
+		        </li>
+		      </ul>
+		    </div><!-- /.navbar-collapse -->
+		  </div><!-- /.container-fluid -->
+		</nav>
+		<div id="desc">
+			<h2>Here You</h2>
+			<p>今天你秃了嘛？</p>
+			<p>白日放歌须纵酒，青春作伴好还乡。【唐代】杜甫《闻官军收河南河北》</p>
+			<p><a>开始阅读</a> <a>GitHub</a></p>
+		</div>
+	</div>
 </header>
-      <div class="outer">
-        <section id="main"><article id="post-pm2/pm2" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/03/24/pm2/pm2/" class="article-date">
-  <time datetime="2020-03-23T16:00:00.000Z" itemprop="datePublished">2020-03-24</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      使用pm2部署vue上线
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>PM2是node进程管理工具，可以利用它来简化很多node应用管理的繁琐任务，如性能监控、自动重启、负载均衡等，而且使用非常简单。</p>
-<h2 id="一、安装"><a href="#一、安装" class="headerlink" title="一、安装"></a>一、安装</h2><p>全局安装，简直不能更简单。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g pm2</span><br></pre></td></tr></table></figure>
-
-<!-- More info: [Writing](https://hexo.io/docs/writing.html) -->
-
-<h2 id="二、vue打包"><a href="#二、vue打包" class="headerlink" title="二、vue打包"></a>二、vue打包</h2><p>使用npm run buil打包，记得要配置好打包路径，以防打包好的路径因为js文件路径错误而页面空白报错，然后丢到服务器指定文件夹</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run buil</span><br></pre></td></tr></table></figure>
-
-<!-- More info: [Server](https://hexo.io/docs/server.html) -->
-
-<h2 id="三、写一个app-js调用打包好的index-html"><a href="#三、写一个app-js调用打包好的index-html" class="headerlink" title="三、写一个app.js调用打包好的index.html"></a>三、写一个app.js调用打包好的index.html</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; app.js  记得要下载require的模块  类似写node的请求接口  把index.html放回去   dist是打好包的文件</span><br><span class="line">const fs &#x3D; require(&#39;fs&#39;);</span><br><span class="line">const path &#x3D; require(&#39;path&#39;);</span><br><span class="line">const express &#x3D; require(&#39;express&#39;);</span><br><span class="line">const chalk &#x3D; require(&#39;chalk&#39;)</span><br><span class="line">const app &#x3D; express();</span><br><span class="line">app.use(express.static(path.resolve(__dirname, &#39;..&#x2F;dist&#39;)))&#x2F;&#x2F;生产环境目录</span><br><span class="line"></span><br><span class="line">app.get(&#39;*&#39;, function(req, res) &#123;</span><br><span class="line">    const html &#x3D; fs.readFileSync(path.resolve(__dirname, &#39;..&#x2F;dist&#x2F;index.html&#39;), &#39;utf-8&#39;)&#x2F;&#x2F;生产环境目录index文件</span><br><span class="line">    res.send(html)</span><br><span class="line">&#125;)</span><br><span class="line">app.listen(8688, res &#x3D;&gt; &#123;&#x2F;&#x2F;端口</span><br><span class="line">  console.log(chalk.yellow(&#39;Start Service On 8688&#39;));</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 
 
-<h2 id="四、写一个pm2-json的配置文件"><a href="#四、写一个pm2-json的配置文件" class="headerlink" title="四、写一个pm2.json的配置文件"></a>四、写一个pm2.json的配置文件</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">   &quot;apps&quot;:&#123;</span><br><span class="line">    &quot;name&quot;: &quot;dev_web&quot;,                             &#x2F;&#x2F; 项目名         </span><br><span class="line">    &quot;script&quot;: &quot;.&#x2F;app.js&quot;,                        &#x2F;&#x2F; 执行文件</span><br><span class="line">    &quot;cwd&quot;: &quot;.&#x2F;&quot;,                                &#x2F;&#x2F; 根目录</span><br><span class="line">    &quot;args&quot;: &quot;&quot;,                                 &#x2F;&#x2F; 传递给脚本的参数</span><br><span class="line">    &quot;interpreter&quot;: &quot;&quot;,                          &#x2F;&#x2F; 指定的脚本解释器</span><br><span class="line">    &quot;interpreter_args&quot;: &quot;&quot;,                     &#x2F;&#x2F; 传递给解释器的参数</span><br><span class="line">    &quot;watch&quot;: true,                              &#x2F;&#x2F; 是否监听文件变动然后重启</span><br><span class="line">    &quot;ignore_watch&quot;: [                           &#x2F;&#x2F; 不用监听的文件</span><br><span class="line">        &quot;node_modules&quot;,</span><br><span class="line">        &quot;logs&quot;</span><br><span class="line">    ],</span><br><span class="line">    &quot;exec_mode&quot;: &quot;cluster_mode&quot;,                &#x2F;&#x2F; 应用启动模式，支持fork和cluster模式  将应用程序分布在所有CPU核心上,可以是整数或负数</span><br><span class="line">    &quot;instances&quot;: 1,                             &#x2F;&#x2F; 应用启动实例个数，仅在cluster模式有效 默认为fork；或者 max</span><br><span class="line">    &quot;max_memory_restart&quot;: &quot;10K&quot;,                &#x2F;&#x2F; 最大内存限制数，超出自动重启 单位可以是K（ilobyte），M（egabyte），G（igabyte）   可以是数组多少个进程</span><br><span class="line">    &quot;error_file&quot;: &quot;.&#x2F;logs&#x2F;app-err.log&quot;,         &#x2F;&#x2F; 错误日志文件</span><br><span class="line">    &quot;out_file&quot;: &quot;.&#x2F;logs&#x2F;app-out.log&quot;,           &#x2F;&#x2F; 正常日志文件</span><br><span class="line">    &quot;merge_logs&quot;: true,                         &#x2F;&#x2F; 设置追加日志而不是新建日志</span><br><span class="line">    &quot;log_date_format&quot;: &quot;YYYY-MM-DD HH:mm:ss&quot;,   &#x2F;&#x2F; 指定日志文件的时间格式</span><br><span class="line">    &quot;min_uptime&quot;: &quot;60s&quot;,                        &#x2F;&#x2F; 应用运行少于时间被认为是异常启动</span><br><span class="line">    &quot;max_restarts&quot;: 30,                         &#x2F;&#x2F; 最大异常重启次数，即小于min_uptime运行时间重启次数；</span><br><span class="line">    &quot;autorestart&quot;: true,                        &#x2F;&#x2F; 默认为true, 发生异常的情况下自动重启</span><br><span class="line">    &quot;cron_restart&quot;: &quot;&quot;,                         &#x2F;&#x2F; crontab时间格式重启应用，目前只支持cluster模式;</span><br><span class="line">    &quot;restart_delay&quot;: 60,                        &#x2F;&#x2F; 异常重启情况下，延时重启时间</span><br><span class="line">    &quot;env&quot;: &#123;</span><br><span class="line">       &quot;NODE_ENV&quot;: &quot;production&quot;,                &#x2F;&#x2F; 环境参数，当前指定为生产环境 process.env.NODE_ENV</span><br><span class="line">       &quot;REMOTE_ADDR&quot;: &quot;&quot;                        &#x2F;&#x2F; process.env.REMOTE_ADDR</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;env_dev&quot;: &#123;</span><br><span class="line">        &quot;NODE_ENV&quot;: &quot;development&quot;,              &#x2F;&#x2F; 环境参数，当前指定为开发环境 pm2 start app.js --env_dev</span><br><span class="line">        &quot;REMOTE_ADDR&quot;: &quot;&quot;</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;env_test&quot;: &#123;                               &#x2F;&#x2F; 环境参数，当前指定为测试环境 pm2 start app.js --env_test</span><br><span class="line">        &quot;NODE_ENV&quot;: &quot;test&quot;,</span><br><span class="line">        &quot;REMOTE_ADDR&quot;: &quot;&quot;</span><br><span class="line">    &#125;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="五、执行pm2命令"><a href="#五、执行pm2命令" class="headerlink" title="五、执行pm2命令"></a>五、执行pm2命令</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pm2 start pm2.json</span><br></pre></td></tr></table></figure>
-
-<h2 id="六、完成"><a href="#六、完成" class="headerlink" title="六、完成"></a>六、完成</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">这样就可以拉，可以使用服务器的ip地址以及app.js用的端口号访问你打包好的项目了，更多Pm2命令可以看官网</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/03/24/pm2/pm2/" data-id="ck85igj6v0003f0u9dtc8gkch" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BD%BF%E7%94%A8pm2%E9%83%A8%E7%BD%B2vue%E4%B8%8A%E7%BA%BF/" rel="tag">使用pm2部署vue上线</a></li></ul>
-
-    </footer>
-  </div>
-  
-    
-<nav id="article-nav">
-  
-  
-    <a href="/2020/03/18/vue/lifeCycle/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">VUE的生命周期</div>
-    </a>
-  
-</nav>
-
-  
-</article>
-
-</section>
-        
-          <aside id="sidebar">
-  
-    
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
-    <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/VUE%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" rel="tag">VUE的生命周期</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node%E7%9A%84%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6/" rel="tag">node的缓存机制</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BD%BF%E7%94%A8pm2%E9%83%A8%E7%BD%B2vue%E4%B8%8A%E7%BA%BF/" rel="tag">使用pm2部署vue上线</a></li></ul>
-    </div>
-  </div>
+<main>
+	 <aside class="info">
+	 		<h2>个人简介</h2>
+	 		<p>	Personal Introduction</p>
+	 </aside>
+	 <aside class="bolck">
+	 		<h2>我的文章</h2>
+	 		<p>My article</p>
+	 </aside>
+</main>
 
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/VUE%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" style="font-size: 10px;">VUE的生命周期</a> <a href="/tags/node%E7%9A%84%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6/" style="font-size: 10px;">node的缓存机制</a> <a href="/tags/%E4%BD%BF%E7%94%A8pm2%E9%83%A8%E7%BD%B2vue%E4%B8%8A%E7%BA%BF/" style="font-size: 10px;">使用pm2部署vue上线</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2020/03/24/pm2/pm2/">使用pm2部署vue上线</a>
-          </li>
-        
-          <li>
-            <a href="/2020/03/18/vue/lifeCycle/">VUE的生命周期</a>
-          </li>
-        
-          <li>
-            <a href="/2020/03/18/node/node/">node的缓存机制</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2020 PeateLi<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
-</footer>
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
     
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -385,7 +164,5 @@
 
 
 
-
-  </div>
 </body>
 </html>
