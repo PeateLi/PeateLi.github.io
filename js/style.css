@@ -229,7 +229,12 @@ textarea, label {
 -------------------------------------------------*/
 .mt20{margin-top:20px;}
 .site-wrapper {
-  border-top: 4px solid #ff0037; }
+  border: 0px !important;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+  top: 0px;
+   }
 
 .page-close {
   font-size: 30px;
@@ -318,7 +323,7 @@ textarea, label {
   background-size: cover;
   vertical-align: middle; }
   .page-home .overlay {
-    background-color: rgba(14, 17, 24, 0.97);
+    /*background-color: rgba(14, 17, 24, 0.97);*/
 }
 
 /* End of container */
