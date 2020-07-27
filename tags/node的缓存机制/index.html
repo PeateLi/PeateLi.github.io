@@ -1,352 +1,424 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  
+<!-- saved from url=(0049)http://demo.lanrenzhijia.com/demo/105/10539/demo/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-  
-  <title>Tag: node的缓存机制 | Here You</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一个来自深圳的代码dog">
+<title>Here You - 李平勇</title>
+
+<!--响应式框架-->
+<link rel="stylesheet" href="./js/bootstrap.min.css">
+
+<!--图标库-->
+<link rel="stylesheet" href="./js/css/font-awesome.css">
+<link rel="icon" href="https://huazhechen.gitee.io/cuber/favicon.ico">
+<!--主要样式-->
+<link rel="stylesheet" href="./js/style.css">
+
+
+<meta charset="utf-8">
+<meta http-equiv="Cache-Control" content="no-cache">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+
+<link rel="apple-touch-icon" href="logo.png">
+<link rel="icon" href="logo.png">
+
+<title>WebGL Fluid Simulation</title>
+<meta name="description" content="A WebGL fluid simulation that works in mobile browsers.">
+
 <meta property="og:type" content="website">
-<meta property="og:title" content="Here You">
-<meta property="og:url" content="http://yoursite.com/tags/node%E7%9A%84%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6/index.html">
-<meta property="og:site_name" content="Here You">
-<meta property="og:description" content="一个来自深圳的代码dog">
-<meta property="og:locale" content="en_US">
-<meta property="article:author" content="PeateLi">
-<meta name="twitter:card" content="summary">
-  
-    <link rel="alternate" href="/atom.xml" title="Here You" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="https://huazhechen.gitee.io/cuber/favicon.ico">
-  
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  
-<link rel="stylesheet" href="/css/style.css">
+<meta property="og:title" content="Webgl Fluid Simulation">
+<meta property="og:description" content="A WebGL fluid simulation that works in mobile browsers.">
+<meta property="og:url" content="https://paveldogreat.github.io/WebGL-Fluid-Simulation/">
+<meta property="og:image" content="https://paveldogreat.github.io/WebGL-Fluid-Simulation/logo.png">
 
-  <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
- <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
-<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-<style >
-  #header{
-    height: 100%;
-  }
-  #carousel-example-generic{
-    height: 100%;
-  }
-  .carousel-inner{
-    height: 100%;
-  }
-  .item{
-    height: 100%;
-    width: 100%;
-    position: relative;
-  }
-  .item .bg{
-    position: absolute;
-    left: 0px;
-    top: 0px;
-    height: 100%;
-    width: 100%;
-    background-color:#F44336; 
-    opacity: 0.1;
-  }
-  .item img{
-    height: 100% !important;
-    width: 100%;
-  }
-  .btn{
-    display: inline-block;
-    padding: 0px 35px;
-    border: 1px solid #fff;
-    height: 43px;
-    line-height: 43px;
-    border-radius: 10px;
-    transition: 1s;
-    color: white;
-  }
-  .btn:hover{
-    border: 1px solid red;
-    background-color: red;
-    border: 0px;
-    color: #fff;
-
-    
-  }
-  .carousel-caption{
-    position: relative;
-    top: -60%;
-    left: 0%;
-  }
-  .navbar.navbar-default.navbar-fixed-top{
-    background-color: #A58F8A;
-    border-bottom-width: 0px;
-  }
-  .navbar.navbar-default.navbar-fixed-top a{
-    color: #fff;
-  }
+<script type="text/javascript" src="dat.gui.min.js"></script>
+<style class="mpa-style-fix ImageGatherer">
+FotorFrame{position:fixed!important}
 </style>
-<meta name="generator" content="Hexo 4.2.0"></head>
+<style class="mpa-style-fix SideFunctionPanel">
+.weui-desktop-online-faq__wrp{top:304px!important;bottom:unset!important}.weui-desktop-online-faq__wrp .weui-desktop-online-faq__switch{width:38px!important}
+	canvas {
+		width: 100%;
+		height: 100vh;
+		display: block;
+		background: #000;
+	}
+</style>
+<style>
+	@font-face {
+		font-family: 'iconfont';
+		src: url('iconfont.ttf') format('truetype');
+	}
 
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <!-- <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Here You</a>
-      </h1>
-      
-        <h2 id="subtitle-wrap">
-          <a href="/" id="subtitle">今天你秃了嘛？</a>
-        </h2>
-      
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
-      </div>
-    </div>
-  </div> -->
-  <nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container-fluid">
-      <!-- Brand and toggle get grouped for better mobile display -->
-      <div class="navbar-header">
-        <a class="navbar-brand" href="#">Here You - 李平勇</a>
-      </div>
-  
-      <!-- Collect the nav links, forms, and other content for toggling -->
-      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav navbar-right" style="margin-right: 20px;">
-          <li><a href="#"> <i class="glyphicon glyphicon-home"></i> 首页</a></li>
-          <li><a href="#"> <i class="glyphicon glyphicon-tags"></i> 标签</a></li>
-          <li><a href="#"> <i class="glyphicon glyphicon-bookmark"></i> 分类</a></li>
-          <li><a href="#"> <i class="glyphicon glyphicon-folder-close"></i> 归档</a></li>
-          <li><a href="#"> <i class="glyphicon glyphicon-user"></i> 关于</a></li>
-          <li><a href="#"> <i class="glyphicon glyphicon-pencil"></i> 留言</a></li>
-          <li><a href="#"> <i class="glyphicon glyphicon-search"></i> </a></li>
-        </ul>
-      </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
-  </nav>
-  <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-    <!-- Indicators -->
-    <ol class="carousel-indicators">
-      <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-      <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-      <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-    </ol>
-   
-    <!-- Wrapper for slides -->
-    <div class="carousel-inner" role="listbox">
-      <div class="item active">
-        <div class="bg"></div>
-        <img src="http://oss.mflyyou.cn/source/medias/banner/4.jpg" alt="...">
-        <div class="carousel-caption">
-          <h3><a href="/" id="logo">Here You</a></h3>
-          <h2 id="subtitle-wrap">
-            <a href="/" id="subtitle">今天你秃了嘛？</a>
-          </h2>
-          <p><span>白日放歌须纵酒，青春作伴好还乡。</span><span>【唐代】杜甫《闻官军收河南河北》</span></p>
-          <p>
-            <a class="btn" href=""> <i class="glyphicon glyphicon-info-sign"></i> 开始阅读</a>
-            <a class="btn" href=""> <i class="glyphicon glyphicon-tag"></i> GITHUB</a>
-          </p>
-        </div>
-      </div>
-      <div class="item">
-        <div class="bg"></div>
-        <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1584596154400&di=deeb5e420f9b4d31cee4534e6632dbd5&imgtype=0&src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2F2018-01-25%2F5a699c4a6ed20.jpg" alt="...">
-        <div class="carousel-caption">
-          <h3><a href="/" id="logo">Node缓存机制</a></h3>
-          <p>node缓存机制看这篇就够了</p>
-          <p>
-            <a class="btn" href=""> <i class="glyphicon glyphicon-info-sign"></i> 阅读更多</a>
-          </p>
-        </div>
-      </div>
-      <div class="item">
-        <div class="bg"></div>
-        <img src="http://hereyou.club/css/images/banner.jpg" alt="...">
-          <div class="carousel-caption">
-            <h3><a href="/" id="logo">VUE生命周期</a></h3>
-            <p>八个钩子，四个周期</p>
-            <p>
-              <a class="btn" href=""> <i class="glyphicon glyphicon-info-sign"></i> 阅读更多</a>
-            </p>
-          </div>
-      </div>
-    </div>
-    
-  
-    <!-- Controls -->
-    <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-      <span class="sr-only">Previous</span>
-    </a>
-    <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-      <span class="sr-only">Next</span>
-    </a>
-  </div>
-</header>
-      <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2020/03/18/node/node/" class="archive-article-date">
-  <time datetime="2020-03-17T16:00:00.000Z" itemprop="datePublished">Mar 18</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/03/18/node/node/">node的缓存机制</a>
-    </h1>
-  
+	* {
+		user-select: none;
+	}
+	.dg.main.a{
+		display: none;
+	}
+	html, body {
+		overflow: hidden;
+		background-color: #000;
+	}
 
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
+	body {
+		margin: 0;
+		position: fixed;
+		width: 100%;
+		height: 100%;
+	}
 
+	canvas {
+		width: 100%;
+		height: 100%;
+	}
 
-</section>
-        
-          <aside id="sidebar">
-  
-    
+	.dg {
+		opacity: 0.9;
+	}
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
-    <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/VUE%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" rel="tag">VUE的生命周期</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node%E7%9A%84%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6/" rel="tag">node的缓存机制</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BD%BF%E7%94%A8pm2%E9%83%A8%E7%BD%B2vue%E4%B8%8A%E7%BA%BF/" rel="tag">使用pm2部署vue上线</a></li></ul>
-    </div>
-  </div>
+	.dg .property-name {
+		overflow: visible;
+	}
 
+	.bigFont {
+		font-size: 150%;
+		color: #8C8C8C;
+	}
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/VUE%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" style="font-size: 10px;">VUE的生命周期</a> <a href="/tags/node%E7%9A%84%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6/" style="font-size: 10px;">node的缓存机制</a> <a href="/tags/%E4%BD%BF%E7%94%A8pm2%E9%83%A8%E7%BD%B2vue%E4%B8%8A%E7%BA%BF/" style="font-size: 10px;">使用pm2部署vue上线</a>
-    </div>
-  </div>
+	.cr.function.appBigFont {
+		font-size: 150%;
+		line-height: 27px;
+		color: #A5F8D3;
+		background-color: #023C40;
+	}
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li></ul>
-    </div>
-  </div>
+	.cr.function.appBigFont .property-name {
+		float: none;
+	}
 
+	.cr.function.appBigFont .icon {
+		position: sticky;
+		bottom: 27px;
+	}
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2020/03/24/pm2/pm2/">使用pm2部署vue上线</a>
-          </li>
-        
-          <li>
-            <a href="/2020/03/18/vue/lifeCycle/">VUE的生命周期</a>
-          </li>
-        
-          <li>
-            <a href="/2020/03/18/node/node/">node的缓存机制</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
+	.icon {
+		font-family: 'iconfont';
+		font-size: 130%;
+		float: right;
+	}
 
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2020 PeateLi<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
-</footer>
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
-    
+	.twitter:before {
+		content: 'a';
+	}
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+	.github:before {
+		content: 'b';
+	}
 
+	.app:before {
+		content: 'c';
+	}
 
-  
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+	.discord:before {
+		content: 'd';
+	}
 
-  
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
+	.promo {
+		display: none;
+		/* display: table; */
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		z-index: 1;
+		overflow: auto;
+		color: lightblue;
+		background-color: rgba(0,0,0,0.4);
+		animation: promo-appear-animation 0.35s ease-out;
+	}
 
+	.promo-middle {
+		display: table-cell;
+		vertical-align: middle;
+	}
 
+	.promo-content {
+		width: 80vw;
+		height: 80vh;
+		max-width: 80vh;
+		max-height: 80vw;
+		margin: auto;
+		padding: 0;
+		font-size: 2.8vmax;
+		font-family: Futura, "Trebuchet MS", Arial, sans-serif;
+		text-align: center;
+		background-image: url("promo_back.png");
+		background-position: center;
+		background-repeat: no-repeat;
+		background-size: cover;
+		border-radius: 15px;
+		box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+	}
 
+	.promo-header {
+		height: 10%;
+		padding: 2px 16px;
+	}
 
-<script src="/js/script.js"></script>
+	.promo-close {
+		width: 10%;
+		height: 100%;
+		text-align: left;
+		float: left;
+		font-size: 1.3em;
+		/* transition: 0.2s; */
+	}
 
+	.promo-close:hover {
+		/* transform: scale(1.25); */
+		cursor: pointer;
+	}
 
+	.promo-body {
+		padding: 8px 16px 16px 16px;
+		margin: auto;
+	}
 
+	.promo-body p {
+		margin-top: 0;
+		mix-blend-mode: color-dodge;
+	}
 
-  </div>
-</body>
-</html>
+	.link {
+		width: 100%;
+		display: inline-block;
+	}
+
+	.link img {
+		width: 100%;
+	}
+
+	@keyframes promo-appear-animation {
+		0% {
+			transform: scale(2.0);
+			opacity: 0;
+		}
+		100% {
+			transform: scale(1.0);
+			opacity: 1;
+		}
+	}
+</style>
+<script>
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-105392568-1', 'auto');
+	ga('send', 'pageview');
+</script>
+<script async src="https://www.google-analytics.com/analytics.js"></script>
+</head>
+<body mpa-version="7.9.0" mpa-extension-id="ibefaeehajgcpooopoegkifhgecigeeg">
+	<!-- Mother of God, pls forgive me -->
+	<div class="promo">
+		<div class="promo-middle">
+			<div class="promo-content">
+				<div class="promo-header">
+					<span class="promo-close">&times;</span>
+				</div>
+				<div class="promo-body">
+					<p>Try Fluid Simulation app!</p>
+					<div class="links-container">
+						<a class="link" id="apple_link" target="_blank">
+							<img class="link-img" alt="Download on the App Store" src="app_badge.png"/>
+						</a>
+						<a class="link" id="google_link" target="_blank">
+							<img class="link-img" alt="Get it on Google Play" src="gp_badge.png"/>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+<main class="site-wrapper" style="border-top: 0px">
+
+	<div class="pt-table desktop-768">
+	
+		<div class="pt-tablecell page-home relative">
+		
+			<div class="overlay" style="background: none"></div>
+		
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-12 col-md-offset-1 col-md-10 col-lg-offset-2 col-lg-8" style="margin-left: 0px">
+						<div class="page-title  home text-center" style="width: 725px">
+						  <span class="heading-page"> 欢迎来到我的主页
+						  </span>
+							<p class="mt20">以下是我的个人介绍快捷入口。</p>
+						</div>
+			
+						<div class="hexagon-menu clear" style="width: 800px">
+							<div class="hexagon-item">
+								<div class="hex-item">
+									<div></div>
+									<div></div>
+									<div></div>
+								</div>
+								<div class="hex-item">
+									<div></div>
+									<div></div>
+									<div></div>
+								</div>
+								<a href="./about/index.html" class="hex-content">
+									<span class="hex-content-inner">
+										<span class="icon" style="float: none;">
+											<i class="fa fa-universal-access"></i>
+										</span>
+										<span class="title">Welcome</span>
+									</span>
+									<svg viewBox="0 0 173.20508075688772 200" height="200" width="174" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M86.60254037844386 0L173.20508075688772 50L173.20508075688772 150L86.60254037844386 200L0 150L0 50Z" fill="#1e2530"></path></svg>
+								</a>
+							</div>
+							<div class="hexagon-item">
+								<div class="hex-item">
+									<div></div>
+									<div></div>
+									<div></div>
+								</div>
+								<div class="hex-item">
+									<div></div>
+									<div></div>
+									<div></div>
+								</div>
+								<a href="./about/index.html" class="hex-content">
+									<span class="hex-content-inner">
+										<span class="icon" style="float: none;">
+											<i class="fa fa-bullseye"></i>
+										</span>
+										<span class="title">About</span>
+									</span>
+									<svg viewBox="0 0 173.20508075688772 200" height="200" width="174" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M86.60254037844386 0L173.20508075688772 50L173.20508075688772 150L86.60254037844386 200L0 150L0 50Z" fill="#1e2530"></path></svg>
+								</a>
+							</div>
+							<div class="hexagon-item">
+								<div class="hex-item">
+									<div></div>
+									<div></div>
+									<div></div>
+								</div>
+								<div class="hex-item">
+									<div></div>
+									<div></div>
+									<div></div>
+								</div>
+								<a href="./about/index.html" class="hex-content">
+									<span class="hex-content-inner" >
+										<span class="icon" style="float: none;">
+											<i class="fa fa-braille"></i>
+										</span>
+										<span class="title">Services</span>
+									</span>
+									<svg viewBox="0 0 173.20508075688772 200" height="200" width="174" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M86.60254037844386 0L173.20508075688772 50L173.20508075688772 150L86.60254037844386 200L0 150L0 50Z" fill="#1e2530"></path></svg>
+								</a>    
+							</div>
+							<div class="hexagon-item">
+								<div class="hex-item">
+									<div></div>
+									<div></div>
+									<div></div>
+								</div>
+								<div class="hex-item">
+									<div></div>
+									<div></div>
+									<div></div>
+								</div>
+								<a href="./about/index.html" class="hex-content">
+									<span class="hex-content-inner">
+										<span class="icon" style="float: none;">
+											<i class="fa fa-id-badge"></i>
+										</span>
+										<span class="title">Resume</span>
+									</span>
+									<svg viewBox="0 0 173.20508075688772 200" height="200" width="174" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M86.60254037844386 0L173.20508075688772 50L173.20508075688772 150L86.60254037844386 200L0 150L0 50Z" fill="#1e2530"></path></svg>
+								</a>
+							</div>
+							<div class="hexagon-item">
+								<div class="hex-item">
+									<div></div>
+									<div></div>
+									<div></div>
+								</div>
+								<div class="hex-item">
+									<div></div>
+									<div></div>
+									<div></div>
+								</div>
+								<a href="./about/index.html" class="hex-content">
+									<span class="hex-content-inner">
+										<span class="icon" style="float: none;">
+											<i class="fa fa-life-ring"></i>
+										</span>
+										<span class="title">Works</span>
+									</span>
+									<svg viewBox="0 0 173.20508075688772 200" height="200" width="174" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M86.60254037844386 0L173.20508075688772 50L173.20508075688772 150L86.60254037844386 200L0 150L0 50Z" fill="#1e2530"></path></svg>
+								</a>
+							</div>
+							<div class="hexagon-item">
+								<div class="hex-item">
+									<div></div>
+									<div></div>
+									<div></div>
+								</div>
+								<div class="hex-item">
+									<div></div>
+									<div></div>
+									<div></div>
+								</div>
+								<a href="./about/index.html" class="hex-content">
+									<span class="hex-content-inner">
+										<span class="icon" style="float: none;">
+											<i class="fa fa-clipboard"></i>
+										</span>
+										<span class="title">Testimonials</span>
+									</span>
+									<svg viewBox="0 0 173.20508075688772 200" height="200" width="174" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M86.60254037844386 0L173.20508075688772 50L173.20508075688772 150L86.60254037844386 200L0 150L0 50Z" fill="#1e2530"></path></svg>
+								</a>
+							</div>
+							<div class="hexagon-item">
+								<div class="hex-item">
+									<div></div>
+									<div></div>
+									<div></div>
+								</div>
+								<div class="hex-item">
+									<div></div>
+									<div></div>
+									<div></div>
+								</div>
+								<a href="./about/index.html" class="hex-content">
+									<span class="hex-content-inner">
+										<span class="icon" style="float: none;">
+											<i class="fa fa-map-signs"></i>
+										</span>
+										<span class="title">Contact</span>
+									</span>
+									<svg viewBox="0 0 173.20508075688772 200" height="200" width="174" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M86.60254037844386 0L173.20508075688772 50L173.20508075688772 150L86.60254037844386 200L0 150L0 50Z" fill="#1e2530"></path></svg>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+		
+	</div>
+	
+</main>
+<canvas></canvas>
+<script src="./script.js"></script>
+</body></html>
